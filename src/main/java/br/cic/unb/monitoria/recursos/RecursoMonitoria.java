@@ -6,15 +6,19 @@ import br.unb.cic.spark.Capacidade;
 import br.unb.cic.spark.Metodo;
 import br.unb.cic.spark.Recurso;
 
-public class Aluno extends Recurso {
+public class RecursoMonitoria extends Recurso {
 
 	@Override
 	protected void carregarRotas() {
-		capacidades.add(new Capacidade(Metodo.GET, "aluno/autenticar") {
+		capacidades.add(new Capacidade(Metodo.POST, "/monitoria") {
+			
+			@Override
 			public Object handle(Request req, Response resp) throws Exception {
-				return null;
+				resp.status(200);
+				
+				return "recurso para adicionar monitoria solicitado" ;
 			}
-		});	
+		});
 	}
 
 }

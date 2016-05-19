@@ -8,7 +8,7 @@ import br.unb.cic.spark.JSONUtil;
 import br.unb.cic.spark.Metodo;
 import br.unb.cic.spark.Recurso;
 
-public class Oferta extends Recurso {
+public class RecursoOferta extends Recurso {
 
 	@Override
 	protected void carregarRotas() {

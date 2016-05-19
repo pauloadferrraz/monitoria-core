@@ -1,0 +1,13 @@
+/home/rbonifacio/workspace/core/src/main/java/br/cic/unb/monitoria/dominio/GerenteDeOferta.java
+/home/rbonifacio/workspace/core/src/main/java/br/cic/unb/monitoria/recursos/Oferta.java
+/home/rbonifacio/workspace/core/src/main/java/br/cic/unb/monitoria/dominio/Aluno.java
+/home/rbonifacio/workspace/core/src/main/java/br/cic/unb/monitoria/recursos/Aluno.java
+/home/rbonifacio/workspace/core/src/main/java/br/cic/unb/monitoria/dominio/GerenteDeAluno.java
+/home/rbonifacio/workspace/core/src/main/java/br/unb/cic/spark/Metodo.java
+/home/rbonifacio/workspace/core/src/main/java/br/cic/unb/monitoria/dominio/Oferta.java
+/home/rbonifacio/workspace/core/src/main/java/br/unb/cic/spark/Capacidade.java
+/home/rbonifacio/workspace/core/src/main/java/br/unb/cic/spark/GerenciadorDeRotas.java
+/home/rbonifacio/workspace/core/src/main/java/br/unb/cic/spark/Recurso.java
+/home/rbonifacio/workspace/core/src/main/java/br/unb/cic/spark/ServidorSpark.java
+/home/rbonifacio/workspace/core/src/main/java/br/unb/cic/spark/ListaDeRecursos.java
+/home/rbonifacio/workspace/core/src/main/java/br/unb/cic/spark/JSONUtil.java
