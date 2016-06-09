@@ -11,7 +11,7 @@ import br.unb.cic.spark.Recurso;
 public class RecursoOferta extends Recurso {
 
 	@Override
-	protected void carregarRotas() {
+	protected void carregarCapacidades() {
 		capacidades.add(new Capacidade(Metodo.GET, "/oferta") {
 			public Object handle(Request req, Response resp) throws Exception {
 				resp.status(200);

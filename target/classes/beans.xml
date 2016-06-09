@@ -9,8 +9,10 @@
     
     <bean id="oferta" class="br.cic.unb.monitoria.recursos.RecursoOferta"/>
  	<bean id="aluno" class="br.cic.unb.monitoria.recursos.RecursoAluno"/>
- 	<bean id="monitoria" class="br.cic.unb.monitoria.recursos.RecursoMonitoria"/>
+ 	<bean id="solicitacaoMonitoria" class="br.cic.unb.monitoria.recursos.RecursoSolicitacaoMonitoria"/>
 
+
+	<bean id="populaDB" class="br.cic.unb.monitoria.recursos.RecursoPopulaDB"/>
 
  
  	<bean id="listaDeRecursos" class="br.unb.cic.spark.ListaDeRecursos">
@@ -18,7 +20,8 @@
 			<list  >
             	<ref bean="oferta" />
             	<ref bean="aluno" />
-            	<ref bean="monitoria" />                
+            	<ref bean="solicitacaoMonitoria" />
+            	<ref bean="populaDB" />                          
         	</list>	
         </property>
    </bean>

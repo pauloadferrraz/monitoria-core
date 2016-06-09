@@ -18,11 +18,11 @@ public abstract class Recurso {
 	}
 	
 	public void definirCapacidades() {
-		carregarRotas();
+		carregarCapacidades();
 		for(Capacidade r: capacidades) {
 			GerenciadorDeRotas.instance().novaRota(r);
 		}
 	}
 	
-	protected abstract void carregarRotas();
+	protected abstract void carregarCapacidades();
 }

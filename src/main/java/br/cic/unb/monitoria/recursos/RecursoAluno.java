@@ -13,7 +13,7 @@ import br.unb.cic.spark.Recurso;
 public class RecursoAluno extends Recurso {
 
 	@Override
-	protected void carregarRotas() {
+	protected void carregarCapacidades() {
 		capacidades.add(new Capacidade(Metodo.GET, "/aluno/autenticar") {
 		
 			public Object handle(Request req, Response resp) throws Exception {

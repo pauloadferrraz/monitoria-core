@@ -22,14 +22,13 @@ public class ServidorSpark extends Spark {
 		
 		
 		for (Recurso recurso : recursos) {
-			recurso.carregarRotas();
+			recurso.carregarCapacidades();
 			for(Capacidade c : recurso.capacidades) {
 				System.out.println("[UnBSpark] definindo rota " + c.getPath() + " metodo " + c.getMetodo());
 				if(c.getMetodo() == Metodo.GET) {
 					get(c.getPath(), c);
 				}
 				else if(c.getMetodo() == Metodo.POST) {
-					System.out.println("incluiu post");
 					post(c.getPath(),c);
 				}
 			}
