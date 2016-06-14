@@ -9,6 +9,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.unb.cic.monitoria.dominio.Aluno;
+import br.unb.cic.monitoria.dominio.GerenteDeAluno;
+
 /**
  * Classe responsavel por implementar os testes unitarios 
  * da classe GerenteDeAluno. 
