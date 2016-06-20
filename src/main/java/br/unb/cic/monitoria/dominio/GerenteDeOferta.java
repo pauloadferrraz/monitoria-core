@@ -14,4 +14,11 @@ public class GerenteDeOferta {
 				.setParameter("pSemestre", semestre).getResultList();
 	}
 
+	
+	public List<Oferta> listarOfertaTurma(String turma) {
+		EntityManager em = HibernateUtil.instance().em();
+		return em.createQuery("SELECT o FROM Oferta o WHERE o.turma = :pturma")
+				.setParameter("pturma", turma).getResultList();
+	}
+
 }
