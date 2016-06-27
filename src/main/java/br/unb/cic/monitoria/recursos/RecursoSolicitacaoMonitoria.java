@@ -4,8 +4,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import br.unb.cic.monitoria.dominio.Aluno;
+import br.unb.cic.monitoria.dominio.GerenteDeAluno;
 import br.unb.cic.monitoria.dominio.GerenteMonitoria;
 import br.unb.cic.monitoria.dominio.Monitoria;
+import br.unb.cic.monitoria.dominio.Oferta;
 import br.unb.cic.spark.Capacidade;
 import br.unb.cic.spark.CodigoDeRetorno;
 import br.unb.cic.spark.JSONUtil;
@@ -33,7 +40,7 @@ public class RecursoSolicitacaoMonitoria extends Recurso {
 
 					GerenteMonitoria repositorio = new GerenteMonitoria();
 
-					return repositorio.solicitarPedido(sm.idAluno, sm.idTurma, sm.opcao);
+					return repositorio.solicitarPedido(sm.aluno, sm.oferta, sm.tipo);
 				} catch (Exception e) {
 					e.printStackTrace();
 					resp.status(500);
@@ -57,8 +64,8 @@ public class RecursoSolicitacaoMonitoria extends Recurso {
 					SolicitacaoMonitoria responseData[] = new SolicitacaoMonitoria[monitoria.size()];
 					int i = 0;
 					for (Monitoria moni : monitoria) {
-						responseData[i++] = new SolicitacaoMonitoria(moni.getMatricula(), moni.getCodTurma(),
-								moni.getOpcao());
+						responseData[i++] = new SolicitacaoMonitoria(moni.getId(), moni.getAluno(), moni.getOferta(),
+								moni.getRanking(), moni.getTipo(), moni.getStatus());
 					}
 
 					response.status(200);
@@ -83,22 +90,20 @@ public class RecursoSolicitacaoMonitoria extends Recurso {
 
 				try {
 
-					String id = request.queryParams("id");
-					String matricula = request.queryParams("matricula");
-					String disciplina = request.queryParams("disciplina");
-					String turma = request.queryParams("turma");
+					Integer id = Integer.getInteger(request.queryParams("id"));
 					String status = request.queryParams("status");
-					String dataSol = request.queryParams("datasolicitacao");
-					String prioridade = request.queryParams("prioridade");
-					String opcao = request.queryParams("opcao");
+					Integer rank = Integer.getInteger(request.queryParams("ranking"));
+					String tipo = request.queryParams("tipo");
+
+					Aluno aluno = new Aluno();
+					Oferta oferta = new Oferta();
 
 					GerenteMonitoria repositorio = new GerenteMonitoria();
 
-					Monitoria monitoria = new Monitoria(id, matricula, disciplina, turma, status, dataSol, prioridade,
-							opcao);
-					
+					Monitoria monitoria = new Monitoria(id, aluno, oferta, rank, tipo, status);
+
 					repositorio.atualizaMonitoria(monitoria);
-										
+
 					response.status(CodigoDeRetorno.SUCESSO.codigo);
 					response.type("application/json");
 					return JSONUtil.dataToJson(response);
@@ -117,42 +122,74 @@ public class RecursoSolicitacaoMonitoria extends Recurso {
 	}
 
 	static class SolicitacaoMonitoria {
-		String idAluno;
-		String idTurma;
-		String opcao;
+		private Integer id;
+		private Aluno aluno;
+		private Oferta oferta;
+		private Integer ranking;
+		private String tipo;
+		private String status;
 
 		public SolicitacaoMonitoria() {
 
 		}
 
-		public SolicitacaoMonitoria(String idAluno, String idTurma, String opcao) {
-			this.idAluno = idAluno;
-			this.idTurma = idTurma;
-			this.opcao = opcao;
+		public SolicitacaoMonitoria(Integer id, Aluno aluno, Oferta oferta, Integer ranking, String tipo,
+				String status) {
+			super();
+			this.id = id;
+			this.aluno = aluno;
+			this.oferta = oferta;
+			this.ranking = ranking;
+			this.tipo = tipo;
+			this.status = status;
 		}
 
-		public String getIdAluno() {
-			return idAluno;
+		public Integer getId() {
+			return id;
 		}
 
-		public void setIdAluno(String idAluno) {
-			this.idAluno = idAluno;
+		public void setId(Integer id) {
+			this.id = id;
 		}
 
-		public String getIdTurma() {
-			return idTurma;
+		public Aluno getAluno() {
+			return aluno;
 		}
 
-		public void setIdTurma(String idTurma) {
-			this.idTurma = idTurma;
+		public void setAluno(Aluno aluno) {
+			this.aluno = aluno;
 		}
 
-		public String getOpcao() {
-			return opcao;
+		public Oferta getOferta() {
+			return oferta;
 		}
 
-		public void setOpcao(String opcao) {
-			this.opcao = opcao;
+		public void setOferta(Oferta oferta) {
+			this.oferta = oferta;
+		}
+
+		public Integer getRanking() {
+			return ranking;
+		}
+
+		public void setRanking(Integer ranking) {
+			this.ranking = ranking;
+		}
+
+		public String getTipo() {
+			return tipo;
+		}
+
+		public void setTipo(String tipo) {
+			this.tipo = tipo;
+		}
+
+		public String getStatus() {
+			return status;
+		}
+
+		public void setStatus(String status) {
+			this.status = status;
 		}
 
 	}

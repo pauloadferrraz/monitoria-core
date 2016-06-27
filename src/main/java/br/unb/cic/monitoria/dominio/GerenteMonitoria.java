@@ -8,10 +8,10 @@ import br.unb.cic.monitoria.util.HibernateUtil;
 
 public class GerenteMonitoria {
 
-	public Integer solicitarPedido(String idAluno, String idTurma, String opcao) {
+	public Integer solicitarPedido(Aluno Aluno, Oferta oferta, String tipo) {
 		EntityManager em = HibernateUtil.instance().em();
 
-		Aluno aluno = em.find(Aluno.class, idAluno);
+		Aluno aluno = em.find(Aluno.class, Aluno);
 		// Oferta oferta = em.find(Oferta.class, idTurma)
 
 		// deve retornar o ID do pedido de monitoria.
@@ -19,9 +19,13 @@ public class GerenteMonitoria {
 	}
 
 	public List<Monitoria> listarMonitoria(String turma) {
+
 		EntityManager em = HibernateUtil.instance().em();
-		return em.createQuery("SELECT o FROM Monitoria o WHERE o.COD_TURMA = :pturma").setParameter("pturma", turma)
-				.getResultList();
+
+		return em
+				.createQuery("SELECT m FROM Monitoria m INNER JOIN Oferta o ON "
+						+ "	m.CD_OFERTA = o.CD_OFERTA WHERE o.OFERTA = :pturma")
+				.setParameter("pturma", turma).getResultList();
 	}
 
 	public void atualizaMonitoria(Monitoria monitoria) {
